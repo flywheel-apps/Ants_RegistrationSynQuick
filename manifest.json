@@ -1,0 +1,134 @@
+{
+  "name": "ants-nipype",
+  "label": "ANTS using nipype",
+  "description": "A test gear to evaluate nipype functionality",
+  "author": "Loki, the trickster god",
+  "cite": "Taylor Swift",
+  "maintainer": "the monster that lives under my bed",
+  "source": "source",
+  "url": "url",
+  "version": "0.0.1_1.4.2",
+  "custom": {
+    "docker-image": "flywheel/nipype:0.0.1_1.4.2",
+    "gear-builder": {
+      "category": "analysis",
+      "image": "flywheel/nipype:0.0.1_1.4.2"
+    }
+  },
+
+  "license": "Other",
+  "inputs": {
+    "api_key": {
+      "base": "api-key"
+    },
+    "t1w-input": {
+      "description": "T1 weighted anatomical NIfTI file. When provided this file will be used in place of any T1w images found in the current session.",
+      "base": "file",
+      "optional": true,
+      "type": {
+        "enum": [
+          "nifti"
+        ]
+      }
+    }
+  },
+  
+  "config": {
+    "has-skull": {
+      "description": "Does the T1 have a skull present? [ default = true ]",
+      "type": "boolean",
+      "default": true
+    },
+    "transforms": {
+      "description": "Type of transformations",
+      "type": "string",
+      "default": "['Rigid','Affine','SyN']"
+    },
+    "metric": {
+      "description": "idk honestly I copied these from an example call and FRANKLY they're not very well documented",
+      "type": "string",
+      "default": "['Mattes','Mattes','Mattes']"
+    },
+    "metric_weight": {
+      "description": "idk honestly I copied these from an example call and FRANKLY they're not very well documented",
+      "type": "string",
+      "default": "[0.7,0.7,0.7]"
+    },
+    "smoothing_sigmas": {
+      "description": "idk honestly I copied these from an example call and FRANKLY they're not very well documented",
+      "type": "string",
+      "default": "[[1],[1],[0]]"
+    },
+    "shrink_factors": {
+      "description": "idk honestly I copied these from an example call and FRANKLY they're not very well documented",
+      "type": "string",
+      "default": "[[1],[1],[1]]"
+    },
+        "number_of_iterations": {
+      "description": "idk honestly I copied these from an example call and FRANKLY they're not very well documented",
+      "type": "string",
+      "default": "[100,50,10]"
+    },
+        "transform_parameters": {
+      "description": "idk honestly I copied these from an example call and FRANKLY they're not very well documented",
+      "type": "string",
+      "default": "[(0.1,),(0.1,),(0.1,3.0,0.0)]"
+    },
+    "radius_or_number_of_bins": {
+      "description": "idk honestly I copied these from an example call and FRANKLY they're not very well documented",
+      "type": "string",
+      "default": "[32,32,32]"
+    },
+    "output_transform_prefix": {
+      "description": "idk honestly I copied these from an example call and FRANKLY they're not very well documented",
+      "type": "string",
+      "default": "'output_'"
+    },
+    "dimension": {
+      "description": "idk honestly I copied these from an example call and FRANKLY they're not very well documented",
+      "type": "integer",
+      "default": 3
+    },
+    "write_composite_transform": {
+      "description": "idk honestly I copied these from an example call and FRANKLY they're not very well documented",
+      "type": "boolean",
+      "default": true
+    },
+    "collapse_output_transforms": {
+      "description": "idk honestly I copied these from an example call and FRANKLY they're not very well documented",
+      "type": "boolean",
+      "default": false
+    },
+    "initialize_transforms_per_stage": {
+      "description": "idk honestly I copied these from an example call and FRANKLY they're not very well documented",
+      "type": "boolean",
+      "default": false
+    },
+    "sampling_strategy": {
+      "description": "idk honestly I copied these from an example call and FRANKLY they're not very well documented",
+      "type": "string",
+      "default": "['Random','Random',None]"
+    },
+    "sampling_percentage": {
+      "description": "idk honestly I copied these from an example call and FRANKLY they're not very well documented",
+      "type": "string",
+      "default": "[0.05,0.05,None]"
+    },
+    "convergence_threshold": {
+      "description": "idk honestly I copied these from an example call and FRANKLY they're not very well documented",
+      "type": "string",
+      "default": "[1.e-8,1.e-9,1.e-10]"
+    },
+    "convergence_window_size": {
+      "description": "idk honestly I copied these from an example call and FRANKLY they're not very well documented",
+      "type": "string",
+      "default": "[20,20,20]"
+    },
+    "sigma_units": {
+      "description": "idk honestly I copied these from an example call and FRANKLY they're not very well documented",
+      "type": "string",
+      "default": "['vox','vox','vox']"
+    }
+},
+   "command": "python3.7 /flywheel/v0/run.py"
+}
