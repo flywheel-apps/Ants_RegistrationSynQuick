@@ -27,7 +27,7 @@ def skullstrip_standard_node():
 
 def register_t1_2_standard_node(config):
     reg = Node(ants.Registration(), name='registration_node')
-    
+     
     for key, val in reg.inputs.items():
         
         if key in config:
