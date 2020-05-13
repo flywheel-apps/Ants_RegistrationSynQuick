@@ -1,8 +1,8 @@
 from nipype import Node, Function, Workflow
 import nipype.interfaces.ants as ants
 from nipype.interfaces.io import DataSink
-
-
+import shutil
+import os
 
 def skullstrip_standard_node():
     
@@ -120,16 +120,21 @@ def test_pype():
     sink = Node(DataSink(), name='sinker')
 
     # Name of the output folder
-    sink.inputs.base_directory = '/tmp/sink'
+    sink.inputs.base_directory = '/flywheel/v0/output/sink'
     
     # Create a preprocessing workflow
     wf = Workflow(name="preprocWF")
-    wf.base_dir = '/tmp/wf_dir'
+    wf.base_dir = '/flywheel/v0/output'
     
     # Connect DataSink with the relevant nodes
     wf.connect(ari, 'warped_image', sink, 'T1_Out')
     wf.run()
-
+    
+    shutil.make_archive('/flywheel/v0/zipped_out_dir','zip','/flywheel/v0/output')
+    shutil.rmtree('/flywheel/v0/output')
+    os.mkdir('/flywheel/v0/output')
+    shutil.move('/flywheel/v0/zipped_out_dir.zip','/flywheel/v0/output/zipped_out_dir.zip')
+ 
     return(wf)
 
     # ari=ants.Registration(metric=metric,

@@ -7,7 +7,7 @@
   "maintainer": "the monster that lives under my bed",
   "source": "source",
   "url": "url",
-  "version": "0.0.1_1.4.2",
+  "version": "0.0.1d11_1.4.2",
   "custom": {
     "docker-image": "flywheel/nipype:0.0.1_1.4.2",
     "gear-builder": {
@@ -67,7 +67,7 @@
         "number_of_iterations": {
       "description": "idk honestly I copied these from an example call and FRANKLY they're not very well documented",
       "type": "string",
-      "default": "[100,50,10]"
+      "default": "[[100],[50],[10]]"
     },
         "transform_parameters": {
       "description": "idk honestly I copied these from an example call and FRANKLY they're not very well documented",
@@ -129,6 +129,12 @@
       "type": "string",
       "default": "['vox','vox','vox']"
     }
-},
-   "command": "python3.7 /flywheel/v0/run.py"
+}, 
+  "environment": {
+    "workingDir":"/opt/ANTs",
+    "DEBIAN_FRONTEND":"noninteractive",
+    "ANTSPATH":"/opt/ANTs/install/bin/",
+    "PATH":"/opt/ANTs/install/bin/:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+  },
+   "command": "python3 /flywheel/v0/run.py"
 }

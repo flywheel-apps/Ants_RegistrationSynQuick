@@ -48,5 +48,6 @@ WORKDIR /flywheel/v0/templates
 RUN wget http://www.bic.mni.mcgill.ca/~vfonov/icbm/2009/mni_icbm152_nlin_asym_09a_nifti.zip &&\
     unzip mni_icbm152_nlin_asym_09a_nifti.zip && rm mni_icbm152_nlin_asym_09a_nifti.zip
 
+COPY run.py /flywheel/v0/run.py
 # Run Docker:
 # docker run --rm -it --entrypoint=/bin/bash -v /Users/davidparker/Documents/Flywheel/SSE/MyWork/Gears/nipype/DockerIO:/tmp flywheel/nipype:0.0.1_1.4.2

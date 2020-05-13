@@ -3,6 +3,9 @@ import nipype.interfaces.ants as ants
 from nipype.interfaces.io import DataSink
 from pathlib import Path
 from ast import literal_eval
+import shutil
+import logging
+import os
 import flywheel
 
 
@@ -31,7 +34,7 @@ def register_t1_2_standard_node(config):
             config_val = config[key]
             
             if isinstance(config_val,str):
-                config_val = ast.literal_eval(config_val)
+                config_val = literal_eval(config_val)
             
             print('{}: {}'.format(key, config_val))
             reg.set_input(key, config_val)
@@ -72,8 +75,7 @@ def make_workflow(input_t1, config, has_skull=True):
     sink = Node(DataSink(), name='sinker')
 
     # Name of the output folder
-    sink.inputs.base_directory = '/flywheel/v0/nipype/sink'
-
+    sink.inputs.base_directory = '/flywheel/v0/output/sink'
     wf.connect(registration_node, 'warped_image', sink, 'T1_Out')
     
     return (wf)
@@ -83,16 +85,29 @@ def main():
     
     
     with flywheel.gear_context.GearContext() as context:
-    
+        
+        
         config = context.config
+        
+        for key,val in config.items():
+            log.debug('{}: {}'.format(key,val))
+        
         has_skull = config['has-skull']
         input_t1 = context.get_input_path('t1w-input')
         
         
         wf = make_workflow(input_t1, config, has_skull=has_skull)
     
-        wf.run()
+        wf.base_dir = '/flywheel/v0/output'
+    
+        # Connect DataSink with the relevant nodes
         
+        wf.run()
+    
+        shutil.make_archive('/flywheel/v0/zipped_out_dir', 'zip', '/flywheel/v0/output')
+        shutil.rmtree('/flywheel/v0/output')
+        os.mkdir('/flywheel/v0/output')
+        shutil.move('/flywheel/v0/zipped_out_dir.zip', '/flywheel/v0/output/zipped_out_dir.zip')
 
 
 if __name__ == "__main__":
