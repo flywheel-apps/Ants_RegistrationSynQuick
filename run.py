@@ -16,7 +16,7 @@ import utils as ut
 
 def main():
     
-    with flywheel_gear_toolkit.GearToolkitContext() as gtk_context:
+    with ft.GearToolkitContext() as gtk_context:
         # Setup basic logging
         gtk_context.init_logging()
         # Log the configuration for this job
