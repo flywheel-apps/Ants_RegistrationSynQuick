@@ -7,7 +7,7 @@
   "maintainer": "the monster that lives under my bed",
   "source": "source",
   "url": "https://nipype.readthedocs.io/en/latest/api/generated/nipype.interfaces.ants.registration.html",
-  "version": "0.1.0d0_1.4.2",
+  "version": "0.1.0d2_1.4.2",
   "custom": {
     "docker-image": "flywheel/nipype:0.0.1_1.4.2",
     "gear-builder": {

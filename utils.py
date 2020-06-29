@@ -74,7 +74,7 @@ def make_workflow(config, strip_standard, moving_image, fixed_image,
 
     # Set the sink output to the flywheel output
     log.debug(f'\tSetting sink output to {output_dir}')
-    sink.inputs.base_directory = output_dir
+    sink.inputs.base_directory = str(output_dir)
     wf.connect(registration_node, 'warped_image', sink, 'Registered_image')
     if config['save_transform']:
         log.debug('\tsaving transformation parameters')
