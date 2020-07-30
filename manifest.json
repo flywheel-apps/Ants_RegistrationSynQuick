@@ -1,14 +1,17 @@
 {
-  "name": "ants-nipype",
-  "label": "ANTS using nipype",
-  "description": "A test gear to evaluate nipype functionality",
-  "author": "Loki, the trickster god",
-  "cite": "Taylor Swift",
-  "maintainer": "the monster that lives under my bed",
-  "source": "source",
-  "url": "https://nipype.readthedocs.io/en/latest/api/generated/nipype.interfaces.ants.registration.html",
+  "name": "Ants_RegistrationSynQuick",
+  "label": "Ants_RegistrationSynQuick using Nipype",
+  "description": "A gear to perform ANTS registration using Nipype and RegistrationSynQuick",
+  "author": "Flywheel",
+  "cite": "",
+  "maintainer": "support@flywheel.io",
+  "source": "https://github.com/flywheel-apps/Ants_RegistrationSynQuick",
+  "url": "https://nipype.readthedocs.io/en/latest/api/generated/nipype.interfaces.ants.registration.html#registrationsynquick",
   "version": "0.1.0d2_1.4.2",
   "custom": {
+    "flywheel": {
+      "suite": "NIPYPE"
+    },
     "docker-image": "flywheel/nipype:0.0.1_1.4.2",
     "gear-builder": {
       "category": "analysis",
