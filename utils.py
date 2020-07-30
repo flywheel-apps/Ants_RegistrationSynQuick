@@ -5,7 +5,6 @@ import nipype.interfaces.ants as ants
 from nipype.interfaces.io import DataSink
 from nipype.interfaces.ants import RegistrationSynQuick
 from pathlib import Path
-from ast import literal_eval
 import shutil
 import logging
 import os
